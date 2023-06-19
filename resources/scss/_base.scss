@@ -1,0 +1,59 @@
+@import './variable';
+
+@font-face {
+    font-family: InterMedium;
+    src: url('/public/fonts/Inter/static/Inter-Medium.ttf');
+}
+@font-face {
+    font-family: InterRegular;
+    src: url('/public/fonts/Inter/static/Inter-Regular.ttf');
+}
+
+body {
+    margin: 0;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.base-heading {
+    margin: 0;
+    line-height: 1;
+    font-weight: 100;
+    color: $color-black;
+}
+.base-span {
+    line-height: 1;
+    font-family: InterRegular;
+}
+.base-ul {
+    padding: 0;
+    margin: 0;
+}
+.base-li {
+    list-style: none;
+}
+.base-button {
+    display: flex;
+    background-color: transparent;
+    padding: .5em;
+    cursor: pointer;
+}
+.base-a {
+    text-decoration: none;
+    color: $color-black;
+    font-family: InterRegular;
+}
+.base-p {
+    margin: 0;
+    font-size: $font-size-xs;
+    font-family: InterRegular;
+}
+.err-msg {
+    color: $theme-color-fire-engine-red;
+}

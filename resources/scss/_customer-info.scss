@@ -1,0 +1,78 @@
+@import './base';
+
+#avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+    #avatar-container-top {
+        margin-bottom: .5em;
+        #img-container {
+            height: 100px;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+            overflow: hidden;
+            img {
+                height: 100%;
+                width: 100%;
+                object-position: center;
+                object-fit: cover;
+            }
+        }
+    }
+    #avatar-container-bottom {
+        .base-heading {
+            font-family: InterMedium;
+            font-size: $font-size-m;
+        }
+    }
+}
+
+#info-container {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: $color-white;
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        .info-label {
+            margin-bottom: .5em;
+            display: flex;
+            align-items: center;
+            svg {
+                height: 20px;
+                width: 20px;
+                fill: $color-slate-gray;
+            }
+            .base-span {
+                margin-left: .5em;
+                color: $color-slate-gray;
+                font-size: $font-size-xs;
+                font-family: InterRegular;
+            }
+        }
+        .info-content {
+            .base-span {
+                font-size: $font-size-s;
+            }
+            .order-status {
+                font-size: $font-size-2xs;
+                padding: .5em;
+                border-radius: 100px;
+                display: inline-block;
+            }
+            .complete-status {
+                border: solid 1px $theme-color-mint;
+                color: $theme-color-mint;
+            }
+            .pending-status {
+                border: solid 1px $theme-color-selective-yellow;
+                color: $theme-color-selective-yellow;
+            }
+        }
+    }
+}

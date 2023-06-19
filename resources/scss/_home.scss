@@ -1,0 +1,130 @@
+@import './base';
+
+#home-container {
+    #action-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1em;
+        .base-a {
+            color: $theme-color-celtic-blue;
+        }
+    }
+    #model-delete-user-container {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba($color-black, .5);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        z-index: -1;
+        transition: all .15s ease;
+        #selection-container {
+            background-color: $color-white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            aspect-ratio: 2/1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            #selection-top {
+                padding: 1em 2em;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .base-p {
+                    margin-bottom: 1em;
+                    font-size: $font-size-s;
+                    color: $color-slate-gray;
+                }
+                .base-span {
+                    font-size: $font-size-l;
+                }
+            }
+            #selection-bottom {
+                border-top: solid 1px $color-anti-flash-white;
+                display: flex;
+                .base-a,
+                .base-button {
+                    padding: 1em 2em;
+                    flex: 1;
+                    justify-content: center;
+                    text-align: center;
+                    border: none;
+                    font-size: $font-size-xs;
+                    font-family: InterRegular;
+                    &:last-child {
+                        color: $color-white;
+                        background-color: $theme-color-fire-engine-red;
+                    }
+                }
+            }
+        }
+    }
+    .show-model-delete-user-container {
+        opacity: 1!important;
+        z-index: 10!important;
+    }
+    #user-list-container {
+        .user-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+            background-color: $color-white;
+            padding: 1em;
+            border-radius: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .user-name {
+                flex: 2;
+                .base-span {
+                    font-size: $font-size-s;
+                }
+            }
+            .user-email {
+                flex: 2;
+                .base-span {
+                    font-size: $font-size-s;
+                }
+            }
+            .user-role {
+                flex: 1;
+            }
+            .user-action {
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                .base-a,
+                .base-button {
+                    height: 40px;
+                    width: 40px;
+                    margin-left: .75em;
+                    border-radius: 100px;
+                    border: none;
+                    background-color: $color-black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    svg {
+                        fill: $color-white;
+                        height: 18px;
+                        width: 18px;
+                    }
+                }
+            }
+        }
+        .base-p {
+            text-align: center;
+            font-size: $font-size-s;
+        }
+    }
+}

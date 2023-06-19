@@ -1,0 +1,100 @@
+@import './base';
+
+$content-max-width: 500px;
+
+#layout-front-end {
+    width: 100%;
+    max-width: $content-max-width;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0 1em;
+    background-color: rgba($color-anti-flash-white, .35);
+    header, main, footer {
+        padding: 1em 0;
+    }
+    
+    header {
+        .base-heading {
+            font-family: InterMedium;
+            font-size: $font-size-m;
+            text-align: center;
+        }
+    }
+    
+    main {
+        flex: 1;
+        overflow-y: auto;
+        // Hide scrollbar
+        -ms-overflow-style: none;  /* Internet Explorer and Edge */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+           display: none;
+        }
+    }
+    
+    footer {
+        .base-ul {
+            display: flex;
+            align-items: center;
+            .base-li {
+                flex: 1;
+                .base-a,
+                .base-button {
+                    height: 45px;
+                    width: 45px;
+                    border-radius: 100px;
+                    border: none;
+                    background-color: $color-black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-size-xs;
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                        fill: $color-white;
+                    }
+                }
+            }
+            #driver-action-button-container {
+                flex: 5;
+                .base-button,
+                .base-a {
+                    color: $color-white;
+                    font-size: $font-size-xs;
+                    font-family: InterMedium;
+                    border: none;
+                    width: 100%;
+                    margin: auto;
+                    border-radius: 100px;
+                    justify-content: center;
+                    line-height: 1;
+                    letter-spacing: .5px;
+                    .base-span {
+                        font-size: $font-size-xs;
+                    }
+                }
+            }
+        }
+        .order-page-ul {
+            justify-content: space-between;
+            .base-li {
+                &:first-child {
+                    .base-button,
+                    .base-a {
+                        background-color: $color-anti-flash-white;
+                        color: $color-black;
+                    }
+                }
+                .base-button,
+                .base-a {
+                    color: $color-white;
+                    width: calc(100% - 1em)!important;
+                }
+            }
+        }
+    }
+}

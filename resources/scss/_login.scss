@@ -1,0 +1,50 @@
+@import './base';
+
+#login-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+        width: 100%;
+        max-width: 400px;
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1em;
+            label {
+                font-size: $font-size-s;
+                font-family: InterRegular;
+                margin-bottom: .25em;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            #default-price {
+                display: none;
+            }
+            input {
+                padding: .5em;
+                border-radius: 5px;
+                border: solid 1px $color-french-gray;
+            }
+            .err-msg {
+                margin-top: .25em;
+            }
+        }
+        .submit-container {
+            margin-top: 1.5em;
+            .base-button {
+                width: 100%;
+                border-radius: 5px;
+                justify-content: center;
+                background-color: $color-black;
+                color: $color-white;
+                font-size: $font-size-xs;
+                border: none;
+                padding: .75em;
+                letter-spacing: .5px;
+            }
+        }
+    }
+}

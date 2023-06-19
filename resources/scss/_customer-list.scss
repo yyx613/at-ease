@@ -1,0 +1,136 @@
+@import './base';
+
+#driver-container {
+    #progress-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #truck-illu-container {
+            height: 100px;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+        #progress {
+            display: none;
+        }
+    }
+    #delivery-order-container {
+        margin-top: 1em;
+        .base-heading {
+            font-family: InterMedium;
+            font-size: $font-size-s;
+            margin-bottom: 1em;
+            padding: 0 .5em;
+        }
+        #customer-list-container {
+            .customer-list {
+                display: flex;
+                align-items: center;
+                border-radius: 10px;
+                background-color: $color-white;
+                margin-bottom: .5em;
+                padding: .5em 1em;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                .customer-list-left {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    .customer-id {
+                        font-size: $font-size-2xs;
+                        color: $color-slate-gray;
+                        font-family: InterRegular;
+                        margin-bottom: .75em;
+                    }
+                    .customer-name {
+                        font-size: $font-size-s;
+                        color: $color-black;
+                        font-family: InterRegular;
+                        margin-bottom: .25em;
+                    }
+                    .customer-address {
+                        font-size: $font-size-xs;
+                        color: $color-slate-gray;
+                        font-family: InterRegular;
+                    }
+                }
+                .customer-list-right {
+                    .base-button {
+                        border: none;
+                        border-radius: 100px;
+                        padding: 1em;
+                        transition: background-color .25s ease;
+                        &:hover {
+                            background-color: rgba($color-anti-flash-white, .6);
+                        }
+                        svg {
+                            height: 20px;
+                            width: 20px;
+                            fill: $color-black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.start-trip {
+    #progress-container {
+        border-radius: 10px;
+        background-color: $color-white;
+        column-gap: 2em;
+        #progress {
+            display: flex!important;
+            flex-direction: column;
+            align-items: center;
+            .base-span {
+                margin-bottom: .5em;
+            }
+            #progress-outer {
+                display: flex;
+                align-items: center;
+                border-radius: 100px;
+                overflow: hidden;
+                background-color: $color-anti-flash-white;
+                height: 10px;
+                width: 200px;
+                position: relative;
+                #progress-inner {
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background-color: $theme-color-mint;
+                }
+            }
+        }
+    }
+    .customer-list-right {
+        .base-a {
+            display: flex;
+            align-items: center;
+            svg {
+                height: 20px;
+                width: 20px;
+                fill: $color-black;
+            }
+            .base-span {
+                font-size: $font-size-2xs;
+                padding: .5em;
+                border-radius: 100px;
+            }
+            .complete-status {
+                border: solid 1px $theme-color-mint;
+                color: $theme-color-mint;
+            }
+            .pending-status {
+                border: solid 1px $theme-color-selective-yellow;
+                color: $theme-color-selective-yellow;
+            }
+        }
+    }
+}
