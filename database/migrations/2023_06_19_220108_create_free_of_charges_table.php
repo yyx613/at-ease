@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('free_of_charges', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->integer('type');
             $table->integer('foc_2_val')->nullable();
             $table->string('foc_3_val')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

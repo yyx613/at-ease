@@ -12,6 +12,7 @@ class FreeOfCharge extends Model
 
     protected $fillable = [
         'user_id',
+        'product_id',
         'type',
         'foc_2_val',
         'foc_3_val'

@@ -20,6 +20,8 @@ class Order extends Model
         'product_id',
         'qty',
         'price',
+        'total_price',
+        'total_price_foc',
         'remark',
         'status_id'
     ];

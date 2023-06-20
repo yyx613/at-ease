@@ -8,7 +8,6 @@
 <div id="order-summary-container">
     <div id="order-summary-top">
         <h6 class="base-heading">Order Summary</h6>
-        <a href="{{ route('select-product') }}" class="base-a">Add Items</a>
     </div>
     <div id="order-summary-bottom">
         <div id="product-list">
@@ -24,14 +23,39 @@
                     </div>
                     <div class="product-right">
                         <span class="base-span">Qty {{ $prod->qty }} x RM{{ $prod->price }}</span>
-                        <span class="base-span">RM{{ $prod->total_price }}</span>
+                        @if(
+                            (isset($user->foc->type) && $user->foc->type == 2 && $user->foc->product_id == $prod->id) ||
+                            (isset($user->foc->type) && $user->foc->type == 3 && $user->foc->product_id == $prod->id)
+                        )
+                            <span class="base-span ori-price">RM{{ $prod->total_price }}</span>
+                            <span class="base-span ttl-price-foc">RM{{ $prod->total_price_after_foc }}</span>
+                        @else
+                            <span class="base-span">RM{{ $prod->total_price }}</span>
+                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
+        @if (isset($user->foc->type) && $user->foc->type == 1)
+            <div id="foc-container">
+                <div id="foc-top">
+                    <span class="base-span">You're in<span class="base-span foc-type">free of charge</span></span>
+                </div>
+                <div id="foc-bottom"></div>
+            </div>
+        @endif
         <div id="total-price-container">
-            <span class="base-span">Total Price</span>
-            <span class="base-span">RM{{ $cartTotalPrice }}</span>
+            <div id="ttl-price-left">
+                <span class="base-span">Total Price</span>
+            </div>
+            <div id="ttl-price-right">
+                @if (isset($user->foc->type) && $hasFoc)
+                    <span class="base-span ori-price">RM{{ $cartTotalPrice }}</span>
+                    <span class="base-span foc-price">RM{{ $cartTotalPriceFoc }}</span>
+                @else
+                    <span class="base-span">RM{{ $cartTotalPrice }}</span>
+                @endif
+            </div>
         </div>
     </div>
 </div>
@@ -51,7 +75,7 @@
         </div>
         <div id="credit-note-container">
             <span class="base-span">Credit Note (Update)</span>
-            <span class="base-span">RM{{ $cartTotalPrice }}</span>
+            <span class="base-span">RM{{ $cartTotalPriceFoc }}</span>
         </div>
         <div id="remark-container">
             <span class="base-span">Remarks</span>

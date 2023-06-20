@@ -11,11 +11,6 @@
             font-size: $font-size-s;
             font-family: InterMedium;
         }
-        .base-a {
-            font-size: $font-size-s;
-            color: $theme-color-celtic-blue;
-            font-family: InterMedium;
-        }
     }
     #order-summary-bottom {
         background-color: $color-white;
@@ -55,18 +50,42 @@
                     display: flex;
                     flex-direction: column;
                     .base-span {
+                        text-align: right;
+                        font-size: $font-size-xs;
                         &:first-child {
-                            text-align: right;
-                            font-size: $font-size-xs;
                             margin-bottom: .5em;
                             color: $color-slate-gray;
                         }
-                        &:last-child {
-                            text-align: right;
-                            font-size: $font-size-xs;
+                        &:nth-child(2) {
                             font-family: InterMedium;
+                            margin-bottom: .5em;
                         }
                     }
+                    .ori-price {
+                        text-decoration: line-through;
+                        text-decoration-color: $color-slate-gray;
+                        color: $color-french-gray;
+                    }
+                    .ttl-price-foc {
+                        font-family: InterMedium;
+                        color: $theme-color-celtic-blue;
+                    }
+                }
+            }
+        }
+        #foc-container {
+            border-top: solid 1px $color-anti-flash-white;
+            padding: 1em;
+            #foc-top {
+                display: flex;
+                justify-content: flex-end;
+                .base-span {
+                    font-size: $font-size-xs;
+                }
+                .foc-type {
+                    margin-left: .325em;
+                    color: $theme-color-celtic-blue;
+                    font-family: InterMedium;
                 }
             }
         }
@@ -78,6 +97,16 @@
             .base-span {
                 font-size: $font-size-m;
                 font-family: InterMedium;
+            }
+            #ttl-price-right {
+                .ori-price {
+                    text-decoration: line-through;
+                    text-decoration-color: $color-slate-gray;
+                    color: $color-french-gray;
+                }
+                .foc-price {
+                    color: $theme-color-celtic-blue;
+                }
             }
         }
     }

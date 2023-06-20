@@ -1,6 +1,6 @@
 @extends('components.layouts.layout-front-end')
 
-@section('layout-title', 'test')
+@section('layout-title', date('l, d M'))
 
 @section('content')
 @vite(['resources/scss/_customer-list.scss'])

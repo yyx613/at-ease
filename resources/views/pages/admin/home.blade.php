@@ -19,6 +19,9 @@
     <div id="user-list-container">
         @forelse($users as $user)
             <div class="user-container">
+                <div class="user-id">
+                    <span class="base-span">#{{ $user->id }}</span>
+                </div>
                 <div class="user-name">
                     <span class="base-span">{{ $user->name }}</span>
                 </div>

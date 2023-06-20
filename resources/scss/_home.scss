@@ -84,17 +84,21 @@
             &:last-child {
                 margin-bottom: 0;
             }
+            .base-span {
+                font-size: $font-size-s;
+            }
+            .user-id {
+                flex: 1;
+                .base-span {
+                    color: $color-slate-gray;
+                    opacity: .7;
+                }
+            }
             .user-name {
                 flex: 2;
-                .base-span {
-                    font-size: $font-size-s;
-                }
             }
             .user-email {
                 flex: 2;
-                .base-span {
-                    font-size: $font-size-s;
-                }
             }
             .user-role {
                 flex: 1;

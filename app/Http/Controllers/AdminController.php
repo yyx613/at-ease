@@ -111,12 +111,14 @@ class AdminController extends Controller
                 }
                 if ($focType == FreeOfCharge::FOC_TYPE_2) {
                     $rules = array_merge($rules, [
-                        'foc_2_n' => 'required'
+                        'foc_2_n' => 'required',
+                        'foc_2_prod' => 'required'
                     ]);
                 } else if ($focType == FreeOfCharge::FOC_TYPE_3) {
                     $rules = array_merge($rules, [
                         'foc_3_n' => 'required',
                         'foc_3_m' => 'required',
+                        'foc_3_prod' => 'required'
                     ]);
                 }
             }
@@ -129,8 +131,10 @@ class AdminController extends Controller
                 'password.required' => 'Please enter a password',
                 'role.required' => 'Please select a role',
                 'foc_2_n' => 'Please enter N',
+                'foc_2_prod' => 'Please select a product to apply foc',
                 'foc_3_n' => 'Please enter N',
                 'foc_3_m' => 'Please enter M',
+                'foc_3_prod' => 'Please select a product to apply foc',
             ]);
 
             if ($validator->fails()) {
@@ -160,6 +164,7 @@ class AdminController extends Controller
             if (isset($focType)) {
                 FreeOfCharge::create([
                     'user_id' => $user->id,
+                    'product_id' => $focType == FreeOfCharge::FOC_TYPE_2 ? $request->get('foc_2_prod') : ($focType == FreeOfCharge::FOC_TYPE_3 ? $request->get('foc_3_prod') : null),
                     'type' => $focType,
                     'foc_2_val' => $request->get('foc_2_n'),
                     'foc_3_val' => $focType == FreeOfCharge::FOC_TYPE_3 ? $request->get('foc_3_n') . '-' . $request->get('foc_3_m') : null
@@ -196,12 +201,14 @@ class AdminController extends Controller
                 }
                 if ($focType == FreeOfCharge::FOC_TYPE_2) {
                     $rules = array_merge($rules, [
-                        'foc_2_n' => 'required'
+                        'foc_2_n' => 'required',
+                        'foc_2_prod' => 'required'
                     ]);
                 } else if ($focType == FreeOfCharge::FOC_TYPE_3) {
                     $rules = array_merge($rules, [
                         'foc_3_n' => 'required',
                         'foc_3_m' => 'required',
+                        'foc_3_prod' => 'required'
                     ]);
                 }
             }
@@ -210,8 +217,10 @@ class AdminController extends Controller
                 'name.required' => 'Please enter a name',
                 'name.max' => 'Name must not be greater than 150 characters',
                 'foc_2_n' => 'Please enter N',
+                'foc_2_prod' => 'Please select a product to apply foc',
                 'foc_3_n' => 'Please enter N',
                 'foc_3_m' => 'Please enter M',
+                'foc_3_prod' => 'Please select a product to apply foc',
             ]);
      
             if ($validator->fails()) {

@@ -60,26 +60,34 @@
                 @endif
                 <div class="input-container" data-name="foc">
                     <div class="selection-container">
-                        <div class="selection-left">
+                        <div class="selection-top">
                             <input type="radio" id="foc-1" name="foc" value="foc-1" @if((isset($user->foc->type) && $user->foc->type == 1) || old('foc') == 'foc-1') checked @endif>
                             <label for="foc-1">Free of charge</label>
                         </div>
                     </div>
                     <div class="selection-container">
-                        <div class="selection-left">
+                        <div class="selection-top">
                             <input type="radio" id="foc-2" name="foc" value="foc-2" @if((isset($user->foc->type) && $user->foc->type == 2) || old('foc') == 'foc-2') checked @endif>
-                            <label for="foc-2">Free first <strong>N</strong> pack</label>
+                            <label for="foc-2">Free first<strong>N</strong>pack on specific product</label>
                         </div>
-                        <div class="selection-right">
+                        <div class="selection-bottom">
                             <input type="number" id="foc-2-n" name="foc_2_n" placeholder="N" value="{{ $user->foc->foc_2_val ?? old('foc_2_n') }}">
+                            <select name="foc_2_prod" id="foc_2_prod">
+                                <option value="">Select a product</option>
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}" @if((isset($user->foc->product_id) && $user->foc->type == 2 && $user->foc->product_id == $product->id) || old('foc_2_prod') == $product->id) selected @endif>{{ $product->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @error('foc_2_n') <p class="base-p err-msg">{{ $message }}</p> @enderror
+                        @error('foc_2_prod') <p class="base-p err-msg">{{ $message }}</p> @enderror
                     </div>
                     <div class="selection-container">
-                        <div class="selection-left">
+                        <div class="selection-top">
                             <input type="radio" id="foc-3" name="foc" value="foc-3" @if((isset($user->foc->type) && $user->foc->type == 3) || old('foc') == 'foc-3') checked @endif>
-                            <label for="foc-3">Free <strong>N</strong> pack on every <strong>M</strong> pack</label>
+                            <label for="foc-3">Free <strong>N</strong> pack on every<strong>M</strong>pack on specific product</label>
                         </div>
-                        <div class="selection-right">
+                        <div class="selection-bottom">
                             @php
                                 if(isset($user->foc->foc_3_val)) {
                                     $foc_3_n_m = explode('-', $user->foc->foc_3_val);
@@ -87,11 +95,17 @@
                             @endphp
                             <input type="number" id="foc-3-n" name="foc_3_n" placeholder="N" value="{{ $foc_3_n_m[0] ?? old('foc_3_n') }}">
                             <input type="number" id="foc-3-m" name="foc_3_m" placeholder="M" value="{{ $foc_3_n_m[1] ?? old('foc_3_m') }}">
+                            <select name="foc_3_prod" id="foc_3_prod">
+                                <option value="">Select a product</option>
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}" @if((isset($user->foc->product_id) && $user->foc->type == 3 && $user->foc->product_id == $product->id) || old('foc_3_prod') == $product->id) selected @endif>{{ $product->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @error('foc_3_n') <p class="base-p err-msg">{{ $message }}</p> @enderror
+                        @error('foc_3_m') <p class="base-p err-msg">{{ $message }}</p> @enderror
+                        @error('foc_3_prod') <p class="base-p err-msg">{{ $message }}</p> @enderror
                     </div>
-                    @error('foc_2_n') <p class="base-p err-msg">{{ $message }}</p> @enderror
-                    @error('foc_3_n') <p class="base-p err-msg">{{ $message }}</p> @enderror
-                    @error('foc_3_m') <p class="base-p err-msg">{{ $message }}</p> @enderror
                 </div>
                 <div class="submit-container">
                     <button class="base-button" type="submit">{{ $formMode === 'create' ? 'Create User' : 'Edit User' }}</button>

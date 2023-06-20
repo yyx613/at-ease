@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('qty');
             $table->decimal('price');
+            $table->decimal('total_price');
+            $table->decimal('total_price_after_foc');
             $table->unsignedBigInteger('status_id');
             $table->string('remark')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
