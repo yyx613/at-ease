@@ -6,7 +6,9 @@ use App\Models\FreeOfCharge;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -27,6 +29,7 @@ class OrderController extends Controller
         // Calculate cart price
         $cart = [];
         $cartTotalPrice = $cartTotalPriceAfterFoc = 0;
+        $hasFoc = false;
         for ($i=0; $i < count($temp_cart); $i++) { 
             // Get special price
             $specialPrice = null;
@@ -49,7 +52,6 @@ class OrderController extends Controller
                     
                     // Product total price FOC (based on FOC type)
                     $totalPriceAfterFoc = null;
-                    $hasFoc = false;
                     if (isset($user->foc->type)) {
                         if ($user->foc->type == FreeOfCharge::FOC_TYPE_1) {
                             $totalPriceAfterFoc = 0;
@@ -133,6 +135,7 @@ class OrderController extends Controller
                     $prod->save();
                 }
                 Order::insert($orders); // Create orders
+                session(['order_sku' => $orderSku]);
                 // Update customer credit
                 $user->increment('credit', $cartTotalPriceAfterFoc);
                 $user->save();
@@ -146,8 +149,22 @@ class OrderController extends Controller
     }
 
     public function orderReceipt() {
+        $user = User::find(session('customer_id'));
+        $cart = session('final_cart')['cart'];
+        $order = Order::where('order_sku', session('order_sku'))->first();
+        
+        $pdf = PDF::loadView('pages.pdf.order-receipt', [
+            'orderId' => session('order_sku'),
+            'invoiceDate' => $order->created_at,
+            'cart' => $cart,
+            'updatedCredit' => $user->credit,
+        ]);
+        $invoiceName = 'invoice-' . session('order_sku') . '.pdf';
+        Storage::put('public/pdf/' . $invoiceName, $pdf->output());
+
         return view('pages.order.receipt', [
-            'nextStep' => route('customer-list')
+            'nextStep' => route('customer-list'),
+            'invoice_name' => $invoiceName
         ]);
     }
 }

@@ -19,6 +19,8 @@ export default defineConfig({
                 'resources/js/home.js',
                 'resources/scss/_login.scss',
                 'resources/js/cart.js',
+                'resources/scss/_receipt.scss',
+                'resources/js/receipt.js',
             ],
             refresh: true,
         }),
